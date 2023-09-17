@@ -3,11 +3,11 @@ package Trabajo.Curso;
 public class Aula {
 
 	private Integer numeroAula;
-	private Integer cantidadMaxAlumnos;
+	private Integer cantidadAlumnos;
 
-	public Aula(Integer numeroAula, Integer cantidadMaxAulumnos) {
+	public Aula(Integer numeroAula, Integer cantidadAulumnos) {
 		this.numeroAula = numeroAula;
-		this.cantidadMaxAlumnos = cantidadMaxAulumnos;
+		this.cantidadAlumnos = cantidadAulumnos;
 	}
 	
 
@@ -19,12 +19,12 @@ public class Aula {
 		this.numeroAula = numeroAula;
 	}
 
-	public Integer getCantidadMaxAlumnos() {
-		return cantidadMaxAlumnos;
+	public Integer getCantidadAlumnos() {
+		return cantidadAlumnos;
 	}
 
-	public void setCantidadMaxAlumnos(Integer cantidadMaxAlumnos) {
-		this.cantidadMaxAlumnos = cantidadMaxAlumnos;
+	public void setCantidadAlumnos(Integer cantidadAlumnos) {
+		this.cantidadAlumnos = cantidadAlumnos;
 	}
 	
 

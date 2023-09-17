@@ -19,22 +19,42 @@ public class PruebaCurso {
 	
 	
 	@Test
-	public void queSePuedaAsignarUnAulaAUnCurso() {
+	public void queSePuedaCrearUnAula() {
 		Integer codigoMateria = 0;
 		Dia dia = Dia.Miercoles;
 		Horario horario = Horario.mañana;
 		
 		Integer numeroAula = 120;
-		Integer cantidadMaxAulumnos = 80;
+		Integer cantidadAulumnos = 80;
 		
 		
 		Curso curso1 = new Curso(codigoMateria, dia, horario);
-		Aula aula = new Aula(numeroAula, cantidadMaxAulumnos);
+		Aula aula = new Aula(numeroAula, cantidadAulumnos);
 		
-		boolean seAsignoUnAula = curso1.asignarUnAula(aula);
+		boolean seAsignoUnAula = curso1.agregarUnAula(aula);
 		
 		
 		assertTrue(seAsignoUnAula);
+	}
+	
+	@Test
+	public void queNoSePuedaCrearUnAulaConUnMismoNumero() {
+		Integer codigoMateria = 0;
+		Dia dia = Dia.Miercoles;
+		Horario horario = Horario.mañana;
+		
+		Integer numeroAula = 120;
+		Integer cantidadAulumnos = 80;
+		
+		
+		Curso curso1 = new Curso(codigoMateria, dia, horario);
+		Aula aula1 = new Aula(numeroAula, cantidadAulumnos);
+		Aula aula2 = new Aula(numeroAula, 100);
+		
+		curso1.agregarUnAula(aula1);
+		boolean noSePudoAsignoUnAula = curso1.agregarUnAula(aula2);
+		
+		assertFalse(noSePudoAsignoUnAula);
 	}
 	
 
