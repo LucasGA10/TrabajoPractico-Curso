@@ -8,11 +8,11 @@ public class PruebaCurso {
 
 	@Test
 	public void queSePuedaCrearUnCurso() {
-		Integer codigoMateria = 0;
 		Dia dia = Dia.Miercoles;
 		Horario horario = Horario.mañana;
+		Materia materia = new Materia(1, "Matematica");
 		
-		Curso curso = new Curso(codigoMateria, dia, horario);
+		Curso curso = new Curso(materia, dia, horario);
 		
 		assertNotNull(curso);
 	}
@@ -20,15 +20,15 @@ public class PruebaCurso {
 	
 	@Test
 	public void queSePuedaCrearUnAula() {
-		Integer codigoMateria = 0;
 		Dia dia = Dia.Miercoles;
 		Horario horario = Horario.mañana;
+		Materia materia = new Materia(1, "Matematica");
 		
 		Integer numeroAula = 120;
 		Integer cantidadAulumnos = 80;
 		
 		
-		Curso curso1 = new Curso(codigoMateria, dia, horario);
+		Curso curso1 = new Curso(materia, dia, horario);
 		Aula aula = new Aula(numeroAula, cantidadAulumnos);
 		
 		boolean seAsignoUnAula = curso1.agregarUnAula(aula);
@@ -39,15 +39,15 @@ public class PruebaCurso {
 	
 	@Test
 	public void queNoSePuedaCrearUnAulaConUnMismoNumero() {
-		Integer codigoMateria = 0;
 		Dia dia = Dia.Miercoles;
 		Horario horario = Horario.mañana;
+		Materia materia = new Materia(1, "Matematica");
 		
 		Integer numeroAula = 120;
 		Integer cantidadAulumnos = 80;
 		
 		
-		Curso curso1 = new Curso(codigoMateria, dia, horario);
+		Curso curso1 = new Curso(materia, dia, horario);
 		Aula aula1 = new Aula(numeroAula, cantidadAulumnos);
 		Aula aula2 = new Aula(numeroAula, 100);
 		
@@ -57,5 +57,17 @@ public class PruebaCurso {
 		assertFalse(noSePudoAsignoUnAula);
 	}
 	
+	
+	@Test
+	public void queSePuedaAgregarUnaMateria() {
+		Integer idMateria = 2;
+		String nombreMateria = "Matematicas";
+		
+		
+		Materia materia1 = new Materia(idMateria, nombreMateria);
+		
+		
+		assertEquals(idMateria, materia1.getId());
+	}
 
 }

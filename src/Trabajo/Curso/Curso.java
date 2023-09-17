@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class Curso {
 
-	private Integer codigoMateria;
+	private Materia materia;
 	private Dia dia;
 	private Horario horario;
 	private ArrayList <Aula> aulas; 
 
-	public Curso(Integer codigoMateria, Dia dia, Horario horario) {
-		this.codigoMateria = codigoMateria;
+	public Curso(Materia materia, Dia dia, Horario horario) {
+		this.materia = materia;
 		this.dia = dia;
 		this.horario = horario;
 		aulas = new ArrayList <>();
@@ -36,12 +36,12 @@ public class Curso {
 	}
 
 
-	public Integer getCodigoMateria() {
-		return codigoMateria;
+	public Materia getCodigoMateria() {
+		return materia;
 	}
 
-	public void setCodigoMateria(Integer codigoMateria) {
-		this.codigoMateria = codigoMateria;
+	public void setCodigoMateria(Materia materia) {
+		this.materia = materia;
 	}
 
 	public Dia getDia() {
