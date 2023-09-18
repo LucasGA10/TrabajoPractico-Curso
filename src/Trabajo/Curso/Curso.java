@@ -8,15 +8,36 @@ public class Curso {
 	private Dia dia;
 	private Horario horario;
 	private ArrayList <Aula> aulas; 
+	private ArrayList <Alumno> alumnos;
 
 	public Curso(Materia materia, Dia dia, Horario horario) {
 		this.materia = materia;
 		this.dia = dia;
 		this.horario = horario;
 		aulas = new ArrayList <>();
+		alumnos = new ArrayList <>();
 	}
 	
 	
+	public boolean agregarUnAlumno(Alumno alumno) {
+		if(buscarAlumno(alumno.getDni()) == null) {
+			alumnos.add(alumno);
+			return true;
+		}
+		return false;	
+	}
+	
+	
+	private Alumno buscarAlumno(Integer dni) {
+		Alumno alumnoBuscado = null;
+		for (int i = 0; i < alumnos.size(); i++) {
+			if(alumnos.get(i).getDni() == dni) {
+				alumnoBuscado = alumnos.get(i);
+			}
+		}
+		return alumnoBuscado;
+	}
+
 	public boolean agregarUnAula(Aula aula) {
 		if(buscarAula(aula.getNumeroAula()) == null) {
 			aulas.add(aula);
@@ -59,6 +80,5 @@ public class Curso {
 	public void setHorario(Horario horario) {
 		this.horario = horario;
 	}
-	
 	
 }
