@@ -13,8 +13,9 @@ public class PruebaCurso {
 		Dia dia = Dia.Miercoles;
 		Horario horario = Horario.mañana;
 		Materia materia = new Materia(1, "Matematica");
+		Integer id = 0;
 		
-		Curso curso = new Curso(materia, dia, horario);
+		Curso curso = new Curso(id, materia, dia, horario);
 		
 		assertNotNull(curso);
 	}
@@ -79,7 +80,7 @@ public class PruebaCurso {
 		Integer dni = 123456789;
 		Date fechaNacimiento = new Date (26/03/2003);
 		
-		Persona persona = new Persona (nombre, apellido, fechaNacimiento, dni);
+		Usuario persona = new Usuario (nombre, apellido, fechaNacimiento, dni);
 		
 		assertEquals(dni, persona.getDni());
 	}

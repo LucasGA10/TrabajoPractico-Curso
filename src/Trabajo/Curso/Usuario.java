@@ -2,7 +2,7 @@ package Trabajo.Curso;
 
 import java.util.Date;
 
-public class Persona {
+public class Usuario {
 
 	private String nombre;
 	private String apellido;
@@ -11,7 +11,7 @@ public class Persona {
 
 	
 
-	public Persona(String nombre, String apellido, Date fechaNacimiento, Integer dni) {
+	public Usuario(String nombre, String apellido, Date fechaNacimiento, Integer dni) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.fechaNacimiento = fechaNacimiento;

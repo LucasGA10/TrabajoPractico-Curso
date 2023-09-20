@@ -2,7 +2,7 @@ package Trabajo.Curso;
 
 import java.util.Date;
 
-public class Alumno extends Persona{
+public class Alumno extends Usuario{
 
 	private Date fechaIngreso;
 
