@@ -1,6 +1,6 @@
 package Trabajo.Curso;
 
-public class cursoAlumno {
+public class comisionAlumno {
 
 	
 }

@@ -1,6 +1,6 @@
 package Trabajo.Curso;
 
-public enum Horario {
+public enum Turno {
 	mañana,
 	tarde,
 	noche
