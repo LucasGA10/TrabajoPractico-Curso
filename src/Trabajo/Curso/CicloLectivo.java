@@ -4,20 +4,31 @@ import java.util.Date;
 
 public class CicloLectivo {
 
+	private Integer id;
 	private Date fechaIscripcion;
 	private Date fechaFinInscripcion;
 	private Date fechaInicio;
 	private Date fechaFinalizacion;
 	private Cuatrimestre cuatrimestre;
 	
-	public CicloLectivo(Date fechaIscripcion, Date fechaFinInscripcion, Date fechaInicio, Date fechaFinalizacion, Cuatrimestre cuatrimestre) {
+	public CicloLectivo(Integer id, Date fechaIscripcion, Date fechaFinInscripcion, Date fechaInicio, Date fechaFinalizacion, Cuatrimestre cuatrimestre) {
 		this.fechaIscripcion = fechaIscripcion;
 		this.fechaFinInscripcion = fechaFinInscripcion;
 		this.fechaInicio = fechaInicio;
 		this.fechaFinalizacion = fechaFinalizacion;
 		this.cuatrimestre = cuatrimestre;
+		this.id = id;
+		
 	}
 	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public Date getFechaIscripcion() {
 		return fechaIscripcion;
 	}

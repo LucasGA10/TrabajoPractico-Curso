@@ -22,6 +22,20 @@ public class PruebaUniversidad {
 	}
 	
 	@Test
+	public void queNoSePuedaRegistrarDosMateriasConMismaId() {
+		String nombreUni = "Unlam";
+		String nuevaMateria = "Filosofia";
+		
+		Universidad universidad = new Universidad (nombreUni);
+		Materia materia = new Materia (1, nuevaMateria);
+		
+		universidad.agregarMateria(materia);
+		boolean registroFallido = universidad.agregarMateria(materia);
+		
+		assertFalse (registroFallido);
+	}
+	
+	@Test
 	public void queSePuedaQuitarUnaMateria() {
 		String nombreUni = "Unlam";
 		String nuevaMateria = "Filosofia";
@@ -30,6 +44,7 @@ public class PruebaUniversidad {
 		Universidad universidad = new Universidad (nombreUni);
 		Materia materia = new Materia (id, nuevaMateria);
 		universidad.agregarMateria(materia);
+		
 		
 		boolean materiaRemovida = universidad.quitarMateria(id);
 		
@@ -52,6 +67,25 @@ public class PruebaUniversidad {
 		boolean registroDeProfesor = universidad.registrarProfesor(profesor);
 		
 		assertTrue(registroDeProfesor);
+	}
+	
+	@Test 
+	public void queNoSePuedaRegistrarUnProfesorConMismoDni() {
+		
+		Integer id = 0;
+		String nombre = "Rodolfo";
+		String apellido = "Mitre";
+		Date fechaNacimiento = new Date (20/04/1889);
+		Integer dni = 987654321;
+		Profesor profesor = new Profesor (id, nombre, apellido, fechaNacimiento, dni);
+		
+		String nombreUni = "Unlam";
+		Universidad universidad = new Universidad (nombreUni);
+		
+		universidad.registrarProfesor(profesor);
+		boolean registroFallido = universidad.registrarProfesor(profesor);
+		
+		assertFalse(registroFallido);
 	}
 	
 	@Test
@@ -85,7 +119,7 @@ public class PruebaUniversidad {
 		
 		Universidad universidad = new Universidad (nombreUni);
 		Materia materia = new Materia (1, nuevaMateria);
-		CicloLectivo cicloLectivo = new CicloLectivo(fechaInscripcion, fechaFinInscripcion, fechaInicio, fechaFinalizacion, Cuatrimestre.primer_cuatrimestre);
+		CicloLectivo cicloLectivo = new CicloLectivo(15, fechaInscripcion, fechaFinInscripcion, fechaInicio, fechaFinalizacion, Cuatrimestre.primer_cuatrimestre);
 		universidad.agregarMateria(materia);
 		
 		boolean registroExitoso = universidad.crearComision(codComision, materia, cicloLectivo);

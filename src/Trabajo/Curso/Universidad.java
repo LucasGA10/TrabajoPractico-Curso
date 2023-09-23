@@ -1,6 +1,7 @@
 package Trabajo.Curso;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
 public class Universidad {
@@ -9,12 +10,16 @@ public class Universidad {
 	private ArrayList <Materia> materias;
 	private ArrayList <Profesor> profesores;
 	private ArrayList <Comision> comisiones;//posiblemente sea diferente
+	private ArrayList <CicloLectivo> ciclo;
+
+	
 
 	public Universidad(String nombre) {
 		this.nombre = nombre;
 		materias = new ArrayList<>();
 		profesores = new ArrayList <>();
 		comisiones = new ArrayList<>();
+		ciclo = new ArrayList<>();
 	}
 
 	public String getNombre() {
@@ -26,8 +31,13 @@ public class Universidad {
 	}
 
 	public boolean agregarMateria(Materia materia) {
-		materias.add(materia);
-		return true;
+		
+		if (buscarMateria(materia.getId()) == null) {
+			materias.add(materia);
+			return true;
+		}
+		
+		return false;
 	}
 	
 	public boolean quitarMateria(Integer id) {
@@ -60,13 +70,24 @@ public class Universidad {
 		return false;
 	}
 
-	public boolean registrarProfesor(Profesor profesor) {//por terminar
-		profesores.add(profesor);
-		return true;
+	public boolean registrarProfesor(Profesor profesor) {
+		if (buscarProfesor(profesor.getDni())== null) {
+			profesores.add(profesor);
+			return true;
+		}
+		return false; 
+	}
+
+	private Profesor buscarProfesor(Integer dni) {
+		for (int i = 0; i < profesores.size(); i++) {
+			if (profesores.get(i).getDni().equals(dni)) {
+				return profesores.get(i);
+			}
+		}
+		return null;
 	}
 
 	public boolean registrarNuevoAlumno(Alumno alumno) {//por terminar
-		// TODO Auto-generated method stub
 		return true;
 	}
 
@@ -74,6 +95,16 @@ public class Universidad {
 		Comision comision = new Comision(codComision, materia, cicloLectivo);
 		comisiones.add(comision);
 		return true;
+	}
+
+	public void agregarCicloLectivo(Integer id, Date fechaInscripcion, Date fechaFinInscripcion, Date fechaInicio,
+			Date fechaFinalizacion, Cuatrimestre cuatrimestre) {
+			CicloLectivo cicloLectivo = new CicloLectivo (id, fechaInscripcion, fechaFinInscripcion, fechaInicio, fechaFinalizacion, cuatrimestre);
+			ciclo.add(cicloLectivo);
+	}
+	
+	public CicloLectivo getCiclo(Integer numero) {
+		return ciclo.get(numero);
 	}
 
 }
