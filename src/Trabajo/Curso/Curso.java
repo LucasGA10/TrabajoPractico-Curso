@@ -4,44 +4,36 @@ import java.util.ArrayList;
 
 public class Curso {
 
-	private Integer codigoMateria;
+	private Integer id;
+	private Comision comision;
 	private Dia dia;
-	private Horario horario;
-	private ArrayList <Aula> aulas; 
+	private Turno turno;
+	private Aula aula;// hay que hacer que se pueda elegir en un menu las aulas disponibles desde la universidad
+	//private Profesor profesores;
+	//private ArrayList <Alumno> alumnos;
 
-	public Curso(Integer codigoMateria, Dia dia, Horario horario) {
-		this.codigoMateria = codigoMateria;
+	public Curso(Integer id, Comision comision, Dia dia, Turno turno) {
+		this.id = id;
+		this.comision = comision;
 		this.dia = dia;
-		this.horario = horario;
-		aulas = new ArrayList <>();
+		this.turno = turno;
 	}
 	
-	
-	public boolean agregarUnAula(Aula aula) {
-		if(buscarAula(aula.getNumeroAula()) == null) {
-			aulas.add(aula);
-			return true;
-		}
-		return false;
-	}
-	
-	private Object buscarAula(Integer numeroAula) {
-		Aula aulabuscada = null;
-		for (int i = 0; i < aulas.size(); i++) {
-			if(aulas.get(i).getNumeroAula() == numeroAula) {
-				aulabuscada = aulas.get(i);
-			}
-		}
-		return aulabuscada;
+
+	public Integer getId() {
+		return id;
 	}
 
-
-	public Integer getCodigoMateria() {
-		return codigoMateria;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public void setCodigoMateria(Integer codigoMateria) {
-		this.codigoMateria = codigoMateria;
+	public Comision getComision() {
+		return comision;
+	}
+
+	public void setComision(Comision comision) {
+		this.comision = comision;
 	}
 
 	public Dia getDia() {
@@ -52,13 +44,22 @@ public class Curso {
 		this.dia = dia;
 	}
 
-	public Horario getHorario() {
-		return horario;
+	public Turno getTurno() {
+		return turno;
 	}
 
-	public void setHorario(Horario horario) {
-		this.horario = horario;
+	public void setTurno(Turno turno) {
+		this.turno = turno;
 	}
+
+	public Aula getAula() {
+		return aula;
+	}
+
+	public void setAula(Aula aula) {
+		this.aula = aula;
+	}
+
 	
 	
 }

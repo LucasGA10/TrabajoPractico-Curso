@@ -4,10 +4,12 @@ public class Aula {
 
 	private Integer numeroAula;
 	private Integer cantidadAlumnos;
+	private Integer cantidadProfesores;
 
-	public Aula(Integer numeroAula, Integer cantidadAulumnos) {
+	public Aula(Integer numeroAula, Integer cantidadAlumnos) {
 		this.numeroAula = numeroAula;
-		this.cantidadAlumnos = cantidadAulumnos;
+		this.cantidadAlumnos = cantidadAlumnos;
+		this.cantidadProfesores = (int) Math.ceil(cantidadAlumnos / 20.0);
 	}
 	
 
@@ -27,5 +29,12 @@ public class Aula {
 		this.cantidadAlumnos = cantidadAlumnos;
 	}
 	
+	public Integer getCantidadProfesores() {
+		return cantidadProfesores;
+	}
+	
+	public void setCantidadProfesores(Integer cantidadProfesores) {
+		this.cantidadProfesores = cantidadProfesores;
+	}
 
 }

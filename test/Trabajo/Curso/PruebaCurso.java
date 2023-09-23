@@ -2,59 +2,70 @@ package Trabajo.Curso;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+
 import org.junit.Test;
 
 public class PruebaCurso {
 
 	@Test
 	public void queSePuedaCrearUnCurso() {
-		Integer codigoMateria = 0;
-		Dia dia = Dia.Miercoles;
-		Horario horario = Horario.mañana;
+		String nombreMateria = "Matematica";
+		Date fechaInscripcion = new Date (10/04/2023);
+		Date fechaFinInscripcion = new Date(29/04/2023);
+		Date fechaInicio = new Date (10/05/2023);
+		Date fechaFinalizacion = new Date (10/11/2023);
 		
-		Curso curso = new Curso(codigoMateria, dia, horario);
+		Integer id = 0;
+		Dia dia = Dia.Miercoles;
+		Turno turno = Turno.mañana;
+		
+		Materia materia = new Materia (1, nombreMateria);
+		CicloLectivo cicloLectivo = new CicloLectivo(fechaInscripcion, fechaFinInscripcion, fechaInicio, fechaFinalizacion, Cuatrimestre.primer_cuatrimestre);
+		Comision comision = new Comision(0, materia, cicloLectivo);
+		
+		Curso curso = new Curso(id, comision, dia, turno);
 		
 		assertNotNull(curso);
 	}
-	
-	
+	/*
 	@Test
-	public void queSePuedaCrearUnAula() {
-		Integer codigoMateria = 0;
-		Dia dia = Dia.Miercoles;
-		Horario horario = Horario.mañana;
+	public void AgregarUnAlumnoAlCurso() {
+		String nombre = "nicolas";
+		String apellido = "manauta";
+		Integer dni = 123456789;
+		Date fechaIngreso = new Date (31/10/2019);
+		Date fechaNacimiento = new Date (26/03/2003);
 		
+		Materia materia = new Materia(1, "Matematica");
 		Integer numeroAula = 120;
 		Integer cantidadAulumnos = 80;
 		
+		Alumno alumno = new Alumno (nombre, apellido, fechaNacimiento, dni, fechaIngreso);
+		Curso curso1 = new Curso(materia, Dia.Miercoles, Turno.mañana);
+		boolean cargaExitosa = curso1.agregarUnAlumno(alumno);
 		
-		Curso curso1 = new Curso(codigoMateria, dia, horario);
-		Aula aula = new Aula(numeroAula, cantidadAulumnos);
-		
-		boolean seAsignoUnAula = curso1.agregarUnAula(aula);
-		
-		
-		assertTrue(seAsignoUnAula);
+		assertTrue(cargaExitosa);
 	}
 	
+	
 	@Test
-	public void queNoSePuedaCrearUnAulaConUnMismoNumero() {
-		Integer codigoMateria = 0;
-		Dia dia = Dia.Miercoles;
-		Horario horario = Horario.mañana;
+	public void QueNoSePuedaRepetirUnMismoAlumnoEnElCurso() {
+		String nombre = "nicolas";
+		String apellido = "manauta";
+		Integer dni = 123456789;
+		Date fechaIngreso = new Date (31/10/2019);
+		Date fechaNacimiento = new Date (26/03/2003);
 		
+		Materia materia = new Materia(1, "Matematica");
 		Integer numeroAula = 120;
 		Integer cantidadAulumnos = 80;
 		
-		
-		Curso curso1 = new Curso(codigoMateria, dia, horario);
-		Aula aula1 = new Aula(numeroAula, cantidadAulumnos);
-		Aula aula2 = new Aula(numeroAula, 100);
-		
-		curso1.agregarUnAula(aula1);
-		boolean noSePudoAsignoUnAula = curso1.agregarUnAula(aula2);
-		
-		assertFalse(noSePudoAsignoUnAula);
-	}
+		Alumno alumno = new Alumno (nombre, apellido, fechaNacimiento, dni, fechaIngreso);
+		Curso curso1 = new Curso(materia, Dia.Miercoles, Turno.mañana);
+		curso1.agregarUnAlumno(alumno);
+		boolean noSeCargo = curso1.agregarUnAlumno(alumno);
+		assertFalse(noSeCargo);
+	}*/
 
 }
