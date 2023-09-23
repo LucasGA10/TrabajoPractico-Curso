@@ -85,7 +85,7 @@ public class PruebaUniversidad {
 		
 		Universidad universidad = new Universidad (nombreUni);
 		Materia materia = new Materia (1, nuevaMateria);
-		CicloLectivo cicloLectivo = new CicloLectivo(fechaInscripcion, fechaFinInscripcion, fechaInicio, fechaFinalizacion);
+		CicloLectivo cicloLectivo = new CicloLectivo(fechaInscripcion, fechaFinInscripcion, fechaInicio, fechaFinalizacion, Cuatrimestre.primer_cuatrimestre);
 		universidad.agregarMateria(materia);
 		
 		boolean registroExitoso = universidad.crearComision(codComision, materia, cicloLectivo);

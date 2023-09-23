@@ -14,8 +14,9 @@ public class PruebaCicloLectivo {
 		Date fechaFinInscripcion = new Date(29/04/2023);
 		Date fechaInicio = new Date (10/05/2023);
 		Date fechaFinalizacion = new Date (10/11/2023);
+		Cuatrimestre cuatrimestre = Cuatrimestre.primer_cuatrimestre;
 		
-		CicloLectivo cicloLectivo = new CicloLectivo (fechaInscripcion, fechaFinInscripcion, fechaInicio, fechaFinalizacion);
+		CicloLectivo cicloLectivo = new CicloLectivo (fechaInscripcion, fechaFinInscripcion, fechaInicio, fechaFinalizacion, cuatrimestre);
 		
 		assertEquals(fechaInscripcion, cicloLectivo.getFechaIscripcion());
 	}

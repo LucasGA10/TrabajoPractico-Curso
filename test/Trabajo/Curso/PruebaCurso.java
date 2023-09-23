@@ -21,7 +21,7 @@ public class PruebaCurso {
 		Turno turno = Turno.mañana;
 		
 		Materia materia = new Materia (1, nombreMateria);
-		CicloLectivo cicloLectivo = new CicloLectivo(fechaInscripcion, fechaFinInscripcion, fechaInicio, fechaFinalizacion);
+		CicloLectivo cicloLectivo = new CicloLectivo(fechaInscripcion, fechaFinInscripcion, fechaInicio, fechaFinalizacion, Cuatrimestre.primer_cuatrimestre);
 		Comision comision = new Comision(0, materia, cicloLectivo);
 		
 		Curso curso = new Curso(id, comision, dia, turno);
@@ -30,45 +30,6 @@ public class PruebaCurso {
 	}
 	
 	/*
-	@Test
-	public void queSePuedaCrearUnAula() {
-		Dia dia = Dia.Miercoles;
-		Turno horario = Turno.mañana;
-		Materia materia = new Materia(1, "Matematica");
-		
-		Integer numeroAula = 120;
-		Integer cantidadAulumnos = 80;
-		
-		
-		Curso curso1 = new Curso(materia, dia, horario);
-		Aula aula = new Aula(numeroAula, cantidadAulumnos);
-		
-		boolean seAsignoUnAula = curso1.agregarUnAula(aula);
-		
-		
-		assertTrue(seAsignoUnAula);
-	}
-	
-	@Test
-	public void queNoSePuedaCrearUnAulaConUnMismoNumero() {
-		Dia dia = Dia.Miercoles;
-		Turno horario = Turno.mañana;
-		Materia materia = new Materia(1, "Matematica");
-		
-		Integer numeroAula = 120;
-		Integer cantidadAulumnos = 80;
-		
-		
-		Curso curso1 = new Curso(materia, dia, horario);
-		Aula aula1 = new Aula(numeroAula, cantidadAulumnos);
-		Aula aula2 = new Aula(numeroAula, 100);
-		
-		curso1.agregarUnAula(aula1);
-		boolean noSePudoAsignoUnAula = curso1.agregarUnAula(aula2);
-		
-		assertFalse(noSePudoAsignoUnAula);
-	}
-	
 	@Test
 	public void AgregarUnAlumnoAlCurso() {
 		String nombre = "nicolas";

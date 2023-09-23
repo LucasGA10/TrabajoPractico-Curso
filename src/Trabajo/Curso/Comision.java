@@ -5,8 +5,6 @@ public class Comision {
 	private Integer codigo;
 	private Materia materia;
 	private CicloLectivo cicloLectivo;
-	//private Profesor profesores;
-	//private Alumno alumnos;
 
 	public Comision(Integer codigo, Materia materia, CicloLectivo cicloLectivo) {
 		this.codigo = codigo;

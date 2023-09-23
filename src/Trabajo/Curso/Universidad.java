@@ -31,17 +31,33 @@ public class Universidad {
 	}
 	
 	public boolean quitarMateria(Integer id) {
-		return materias.remove(buscarMateria(id));
+		return materias.remove(materias.get(buscarMateria(id)));
 	}
 	
-	private Materia buscarMateria(Integer id) {
-		Materia materiaBuscada = null;
+	private Integer buscarMateria(Integer id) {
+		Integer materiaBuscada = null;
 		for (int i = 0; i < materias.size(); i++) {
-			if (materias.get(i).getId() == id) {
-				materiaBuscada = materias.get(i);
+			if (materias.get(i).getId().equals(id)) {
+				materiaBuscada = i;
 			}
 		}
 		return materiaBuscada;
+	}
+	
+	public boolean agregarCorrelativa(Integer id, Integer id2) {
+		if (buscarMateria(id)!= null && buscarMateria(id2)!= null) {
+			materias.get(buscarMateria(id)).nuevaCorrelativa(materias.get(buscarMateria(id2)));
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean quitarCorrelativa(Integer id, Integer id2) {
+		if (buscarMateria(id)!= null && buscarMateria(id2)!= null) {
+			materias.get(buscarMateria(id)).quitarCorrelativa(materias.get(buscarMateria(id2)));
+			return true;
+		}
+		return false;
 	}
 
 	public boolean registrarProfesor(Profesor profesor) {//por terminar
@@ -59,7 +75,5 @@ public class Universidad {
 		comisiones.add(comision);
 		return true;
 	}
-
-	
 
 }
