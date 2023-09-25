@@ -14,6 +14,14 @@ public class Materia {
 		this.correlativas = new ArrayList<>();
 	}
 	
+	
+	public boolean poseeCorrelativa() {
+		if (correlativas != null) {
+			return true;
+		}
+		return false;
+	}
+	
 	public ArrayList <Materia> getCorrelativas() {
 		return correlativas;
 	}

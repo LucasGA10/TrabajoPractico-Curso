@@ -12,7 +12,8 @@ public class Universidad {
 	private ArrayList <Alumno> alumnos;
 	private ArrayList <Comision> comisiones;//posiblemente sea diferente
 	private ArrayList <CicloLectivo> ciclo;
-
+	private ArrayList <comisionProfesor> comisionProfe;
+	private ArrayList <comisionAlumno> comisionAlum;
 	
 
 	public Universidad(String nombre) {
@@ -22,6 +23,8 @@ public class Universidad {
 		comisiones = new ArrayList<>();
 		ciclo = new ArrayList<>();
 		alumnos = new ArrayList<>();
+		comisionProfe = new ArrayList<>();
+		comisionAlum = new ArrayList<>();
 	}
 
 	public String getNombre() {
@@ -120,9 +123,11 @@ public class Universidad {
 	}
 	
 	public boolean asignarDocentesAComision(Integer codComision, Integer dni) {//esto talvez valla en un posible "comisionProfe"
-		if(buscarComision(codComision) == null) {
-			if (buscarProfesor(dni) == null) {
-				//terminar
+		if(buscarComision(codComision) != null) {
+			if (buscarProfesor(dni) != null) {
+				comisionProfesor comision = new comisionProfesor(dni, codComision);
+				comisionProfe.add(comision);
+				return true;
 			}
 		}
 		return false;
@@ -147,6 +152,52 @@ public class Universidad {
 	
 	public CicloLectivo getCiclo(Integer numero) {
 		return ciclo.get(numero);
+	}
+
+	public boolean mostrarProfesorDeLaComision(Integer idComision) {
+		if (buscarComisionProfesor(idComision) != null) {
+			if (buscarProfesor(buscarComisionProfesor(idComision).getDniProfesor()) != null) {
+			return true;	
+			}	
+		}
+		return false;
+	}
+
+	private comisionProfesor buscarComisionProfesor(Integer idComision) {
+		for (int i = 0; i < comisionProfe.size(); i++) {
+			if (comisionProfe.get(i).getIdComision().equals(idComision)) {
+				return comisionProfe.get(i);
+			}
+		}
+		return null;
+	}
+
+	public boolean inscribirAlumnoAComision(Integer dni, Integer codComision) {
+		if(buscarComision(codComision) != null) {
+			if (buscarAlumno(dni) != null) {
+				comisionAlumno comision = new comisionAlumno(dni, codComision);
+				comisionAlum.add(comision);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void registrarNota(Integer codComision, Integer dni, Integer nota) {
+		if(nota >= 1 && nota <= 10) {
+			if(buscarComision(codComision) != null && buscarAlumno(dni) != null) {
+				if (buscarComision(codComision).getMateria().poseeCorrelativa() == true) {
+					
+				}
+				else {
+					if (nota <= 3) {
+						
+					}
+					
+				}
+			}
+		}
+		
 	}
 
 }
