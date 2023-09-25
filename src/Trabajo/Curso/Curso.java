@@ -9,8 +9,6 @@ public class Curso {
 	private Dia dia;
 	private Turno turno;
 	private Aula aula;// hay que hacer que se pueda elegir en un menu las aulas disponibles desde la universidad
-	//private Profesor profesores;
-	//private ArrayList <Alumno> alumnos;
 
 	public Curso(Integer id, Comision comision, Dia dia, Turno turno) {
 		this.id = id;

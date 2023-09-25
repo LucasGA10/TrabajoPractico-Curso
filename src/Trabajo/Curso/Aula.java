@@ -4,7 +4,7 @@ public class Aula {
 
 	private Integer numeroAula;
 	private Integer cantidadAlumnos;
-	private Integer cantidadProfesores;
+	private Integer cantidadProfesores;//cantidadProfesores talvez tenga que ir en "comisionProfe"
 
 	public Aula(Integer numeroAula, Integer cantidadAlumnos) {
 		this.numeroAula = numeroAula;

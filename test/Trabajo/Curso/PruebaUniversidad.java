@@ -64,7 +64,7 @@ public class PruebaUniversidad {
 		String nombreUni = "Unlam";
 		Universidad universidad = new Universidad (nombreUni);
 		
-		boolean registroDeProfesor = universidad.registrarProfesor(profesor);
+		boolean registroDeProfesor = universidad.agregarProfesor(profesor);
 		
 		assertTrue(registroDeProfesor);
 	}
@@ -82,8 +82,8 @@ public class PruebaUniversidad {
 		String nombreUni = "Unlam";
 		Universidad universidad = new Universidad (nombreUni);
 		
-		universidad.registrarProfesor(profesor);
-		boolean registroFallido = universidad.registrarProfesor(profesor);
+		universidad.agregarProfesor(profesor);
+		boolean registroFallido = universidad.agregarProfesor(profesor);
 		
 		assertFalse(registroFallido);
 	}
@@ -101,7 +101,7 @@ public class PruebaUniversidad {
 		Universidad universidad = new Universidad (nombreUni);
 		Alumno alumno = new Alumno (nombre, apellido, fechaNacimiento, dni, fechaIngreso);
 		
-		boolean registroExitoso = universidad.registrarNuevoAlumno(alumno);
+		boolean registroExitoso = universidad.agregarAlumno(alumno);
 		
 		assertTrue(registroExitoso);
 	}

@@ -9,6 +9,7 @@ public class Universidad {
 	private String nombre;
 	private ArrayList <Materia> materias;
 	private ArrayList <Profesor> profesores;
+	private ArrayList <Alumno> alumnos;
 	private ArrayList <Comision> comisiones;//posiblemente sea diferente
 	private ArrayList <CicloLectivo> ciclo;
 
@@ -20,6 +21,7 @@ public class Universidad {
 		profesores = new ArrayList <>();
 		comisiones = new ArrayList<>();
 		ciclo = new ArrayList<>();
+		alumnos = new ArrayList<>();
 	}
 
 	public String getNombre() {
@@ -29,6 +31,8 @@ public class Universidad {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	//materia-------------------------------------------------------------------------
 
 	public boolean agregarMateria(Materia materia) {
 		
@@ -69,8 +73,10 @@ public class Universidad {
 		}
 		return false;
 	}
+	
+	//Profesor-------------------------------------------------------------------------------
 
-	public boolean registrarProfesor(Profesor profesor) {
+	public boolean agregarProfesor(Profesor profesor) {
 		if (buscarProfesor(profesor.getDni())== null) {
 			profesores.add(profesor);
 			return true;
@@ -87,15 +93,51 @@ public class Universidad {
 		return null;
 	}
 
-	public boolean registrarNuevoAlumno(Alumno alumno) {//por terminar
-		return true;
+	public boolean agregarAlumno(Alumno alumno) {
+		if(buscarAlumno(alumno.getDni()) == null) {
+			alumnos.add(alumno);
+			return true;
+		}
+		return false;
 	}
+	
+
+	private Alumno buscarAlumno(Integer dni) {
+		for (int i = 0; i < alumnos.size(); i++) {
+			if(alumnos.get(i).getDni().equals(dni)) {
+				return alumnos.get(i);
+			}
+		}
+		return null;
+	}
+	
+	//Comision----------------------------------------------------------------------------
 
 	public boolean crearComision(Integer codComision, Materia materia, CicloLectivo cicloLectivo) {//por terminar
 		Comision comision = new Comision(codComision, materia, cicloLectivo);
 		comisiones.add(comision);
 		return true;
 	}
+	
+	public boolean asignarDocentesAComision(Integer codComision, Integer dni) {//esto talvez valla en un posible "comisionProfe"
+		if(buscarComision(codComision) == null) {
+			if (buscarProfesor(dni) == null) {
+				//terminar
+			}
+		}
+		return false;
+	}
+
+	private Comision buscarComision(Integer codComision) {
+		for (int i = 0; i < comisiones.size(); i++) {
+			if (comisiones.get(i).getCodigo().equals(codComision)) {
+				return comisiones.get(i);
+			}
+		}
+		return null;
+	}
+	
+	//cicloLectivo---------------------------------------------------------------------------------------
 
 	public void agregarCicloLectivo(Integer id, Date fechaInscripcion, Date fechaFinInscripcion, Date fechaInicio,
 			Date fechaFinalizacion, Cuatrimestre cuatrimestre) {
