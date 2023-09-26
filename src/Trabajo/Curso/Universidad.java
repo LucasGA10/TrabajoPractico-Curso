@@ -10,7 +10,7 @@ public class Universidad {
 	private ArrayList <Materia> materias;
 	private ArrayList <Profesor> profesores;
 	private ArrayList <Alumno> alumnos;
-	private ArrayList <Comision> comisiones;//posiblemente sea diferente
+	private ArrayList <Comision> comisiones;
 	private ArrayList <CicloLectivo> ciclo;
 	private ArrayList <comisionProfesor> comisionProfe;
 	private ArrayList <comisionAlumno> comisionAlum;
@@ -184,20 +184,15 @@ public class Universidad {
 	}
 
 	public void registrarNota(Integer codComision, Integer dni, Integer nota) {
-		if(nota >= 1 && nota <= 10) {
+		
 			if(buscarComision(codComision) != null && buscarAlumno(dni) != null) {
 				if (buscarComision(codComision).getMateria().poseeCorrelativa() == true) {
 					
-				}
-				else {
-					if (nota <= 3) {
-						
-					}
 					
 				}
 			}
 		}
-		
-	}
+	
+	
 
 }
