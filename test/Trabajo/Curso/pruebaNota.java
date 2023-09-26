@@ -24,13 +24,16 @@ public class pruebaNota {
 		CicloLectivo cicloLectivo = new CicloLectivo(15, fechaInscripcion, fechaFinInscripcion, fechaInicio, fechaFinalizacion, Cuatrimestre.primer_cuatrimestre);
 		Alumno alumno = new Alumno("Eva", "Fort", fechaNacimiento, dni, fechaInicio);
 		unlam.agregarMateria(materia);
-		unlam.crearComision(codComision, materia, cicloLectivo);
+		unlam.crearComision(materia, cicloLectivo);
 		unlam.agregarAlumno(alumno);
 		unlam.inscribirAlumnoAComision (dni,codComision);
 		
+		
 		Integer nota = 4;
 		
-		unlam.registrarNota (codComision, alumno.getDni(), nota);
+		boolean registroExitoso = unlam.registrarNota (codComision, alumno.getDni(), nota);
+		
+		assertTrue(registroExitoso);
 	}
 
 }

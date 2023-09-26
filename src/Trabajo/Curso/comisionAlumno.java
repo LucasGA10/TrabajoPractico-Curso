@@ -12,6 +12,7 @@ public class comisionAlumno {
 		this.dniAlumno = dniAlumno;
 		this.idComision = idComision;
 		this.id = next_id;
+		next_id++;
 	}
 
 	public Integer getIdNota() {
@@ -36,6 +37,14 @@ public class comisionAlumno {
 
 	public void setIdComision(Integer idComision) {
 		this.idComision = idComision;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 }

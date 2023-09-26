@@ -14,6 +14,7 @@ public class Universidad {
 	private ArrayList <CicloLectivo> ciclo;
 	private ArrayList <comisionProfesor> comisionProfe;
 	private ArrayList <comisionAlumno> comisionAlum;
+	private ArrayList<Nota> nota;
 	
 
 	public Universidad(String nombre) {
@@ -25,6 +26,7 @@ public class Universidad {
 		alumnos = new ArrayList<>();
 		comisionProfe = new ArrayList<>();
 		comisionAlum = new ArrayList<>();
+		nota = new ArrayList<>();
 	}
 
 	public String getNombre() {
@@ -114,10 +116,34 @@ public class Universidad {
 		return null;
 	}
 	
+	//cicloLectivo---------------------------------------------------------------------------------------
+
+		public void agregarCicloLectivo(Integer id, Date fechaInscripcion, Date fechaFinInscripcion, Date fechaInicio,
+				Date fechaFinalizacion, Cuatrimestre cuatrimestre) {
+				CicloLectivo cicloLectivo = new CicloLectivo (id, fechaInscripcion, fechaFinInscripcion, fechaInicio, fechaFinalizacion, cuatrimestre);
+				ciclo.add(cicloLectivo);
+		}
+		
+		public CicloLectivo getCiclo(Integer numero) {
+			return ciclo.get(numero);
+		}
+
+		public boolean mostrarProfesorDeLaComision(Integer idComision) {
+			if (buscarComisionProfesor(idComision) != null) {
+				if (buscarProfesor(buscarComisionProfesor(idComision).getDniProfesor()) != null) {
+				return true;	
+				}	
+			}
+			return false;
+		}
+	
 	//Comision----------------------------------------------------------------------------
 
-	public boolean crearComision(Integer codComision, Materia materia, CicloLectivo cicloLectivo) {//por terminar
-		Comision comision = new Comision(codComision, materia, cicloLectivo);
+	public boolean crearComision(Materia materia, CicloLectivo cicloLectivo) {//por terminar
+		Comision comision = new Comision(materia, cicloLectivo);
+		if (comisiones.contains(comision)) {
+			return false;
+		}
 		comisiones.add(comision);
 		return true;
 	}
@@ -133,34 +159,13 @@ public class Universidad {
 		return false;
 	}
 
-	private Comision buscarComision(Integer codComision) {
+	public Comision buscarComision(Integer codComision) {//hice esto public
 		for (int i = 0; i < comisiones.size(); i++) {
 			if (comisiones.get(i).getCodigo().equals(codComision)) {
 				return comisiones.get(i);
 			}
 		}
 		return null;
-	}
-	
-	//cicloLectivo---------------------------------------------------------------------------------------
-
-	public void agregarCicloLectivo(Integer id, Date fechaInscripcion, Date fechaFinInscripcion, Date fechaInicio,
-			Date fechaFinalizacion, Cuatrimestre cuatrimestre) {
-			CicloLectivo cicloLectivo = new CicloLectivo (id, fechaInscripcion, fechaFinInscripcion, fechaInicio, fechaFinalizacion, cuatrimestre);
-			ciclo.add(cicloLectivo);
-	}
-	
-	public CicloLectivo getCiclo(Integer numero) {
-		return ciclo.get(numero);
-	}
-
-	public boolean mostrarProfesorDeLaComision(Integer idComision) {
-		if (buscarComisionProfesor(idComision) != null) {
-			if (buscarProfesor(buscarComisionProfesor(idComision).getDniProfesor()) != null) {
-			return true;	
-			}	
-		}
-		return false;
 	}
 
 	private comisionProfesor buscarComisionProfesor(Integer idComision) {
@@ -182,16 +187,39 @@ public class Universidad {
 		}
 		return false;
 	}
-
-	public void registrarNota(Integer codComision, Integer dni, Integer nota) {
-		
-			if(buscarComision(codComision) != null && buscarAlumno(dni) != null) {
-				if (buscarComision(codComision).getMateria().poseeCorrelativa() == true) {
-					
-					
-				}
+	
+	private comisionAlumno buscarComisionAlumno(Integer codComision, Integer dni) {
+		for (int i = 0; i < comisionAlum.size(); i++) {
+			if(comisionAlum.get(i).getIdComision().equals(codComision) && comisionAlum.get(i).getDniAlumno().equals(dni)) {
+				return comisionAlum.get(i);
 			}
 		}
+		return null;
+	}
+	
+	//nota--------------------------------------------------------------------------------------------
+
+	public boolean registrarNota(Integer codComision, Integer dni, Integer nota) {
+		
+			if(buscarComisionAlumno(codComision, dni)!= null && nota >= 1 && nota <= 10) {
+				if (buscarComision(codComision).getMateria().poseeCorrelativa() == true) {
+					buscarComisionAlumno(codComision, dni).setIdNota(asignarNota(nota).getId());
+					return true;
+				}
+			}
+			return false;
+		}
+
+	private Nota asignarNota(Integer nuevaNota) {
+		for (int i = 0; i < nota.size(); i++) {
+			if (nota.get(i).getNota().equals(nuevaNota)) {
+				return nota.get(i);
+			}
+		}
+		Nota agregarNota = new Nota(nuevaNota);
+		nota.add(agregarNota);
+		return agregarNota;
+	}
 	
 	
 

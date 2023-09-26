@@ -22,7 +22,7 @@ public class PruebaCurso {
 		
 		Materia materia = new Materia (1, nombreMateria);
 		CicloLectivo cicloLectivo = new CicloLectivo(id, fechaInscripcion, fechaFinInscripcion, fechaInicio, fechaFinalizacion, Cuatrimestre.primer_cuatrimestre);
-		Comision comision = new Comision(0, materia, cicloLectivo);
+		Comision comision = new Comision(materia, cicloLectivo);
 		
 		Curso curso = new Curso(id, comision, dia, turno);
 		

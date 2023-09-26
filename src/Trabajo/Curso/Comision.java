@@ -1,17 +1,17 @@
 package Trabajo.Curso;
 
-import java.util.ArrayList;
-
 public class Comision {
 
+	private static Integer nextCodigo = 1000;
 	private Integer codigo;
 	private Materia materia;
 	private CicloLectivo cicloLectivo;
 
-	public Comision(Integer codigo, Materia materia, CicloLectivo cicloLectivo) {
-		this.codigo = codigo;
+	public Comision(Materia materia, CicloLectivo cicloLectivo) {
 		this.materia = materia;
 		this.cicloLectivo = cicloLectivo;
+		this.codigo = nextCodigo;
+		nextCodigo++;
 	}
 	
 	

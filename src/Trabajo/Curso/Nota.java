@@ -2,11 +2,16 @@ package Trabajo.Curso;
 
 public class Nota {
 	
-	Integer Nota;
+	private static Integer nextId = 0;
+	private Integer id;
+	private Integer Nota;
 	Condicion condicion;
 	
 	public Nota(Integer nota) {
 		Nota = nota;
+		asignarCondicion(nota);
+		setId(nextId);
+		nextId++;
 	}
 	
 	public Condicion asignarCondicion(Integer nota) {
@@ -40,6 +45,14 @@ public class Nota {
 
 	public void setCondicion(Condicion condicion) {
 		this.condicion = condicion;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 }
