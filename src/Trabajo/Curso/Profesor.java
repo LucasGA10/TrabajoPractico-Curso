@@ -4,11 +4,13 @@ import java.util.Date;
 
 public class Profesor extends Usuario {
 
+	private static Integer next_id = 0;
 	private Integer id;
 
-	public Profesor(Integer id, String nombre, String apellido, Date fechaNacimiento, Integer dni) {
+	public Profesor(String nombre, String apellido, Date fechaNacimiento, Integer dni) {
 		super(nombre, apellido, fechaNacimiento, dni);
-		this.id = id;
+		this.id = next_id;
+		Profesor.next_id++;
 	}
 
 	public Integer getId() {

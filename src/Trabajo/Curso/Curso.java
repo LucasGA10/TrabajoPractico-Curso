@@ -1,16 +1,11 @@
 package Trabajo.Curso;
 
-import java.util.ArrayList;
-
 public class Curso {
 
 	private Integer id;
 	private Comision comision;
 	private Dia dia;
 	private Turno turno;
-	private Aula aula;// hay que hacer que se pueda elegir en un menu las aulas disponibles desde la universidad
-	//private Profesor profesores;
-	//private ArrayList <Alumno> alumnos;
 
 	public Curso(Integer id, Comision comision, Dia dia, Turno turno) {
 		this.id = id;
@@ -50,14 +45,6 @@ public class Curso {
 
 	public void setTurno(Turno turno) {
 		this.turno = turno;
-	}
-
-	public Aula getAula() {
-		return aula;
-	}
-
-	public void setAula(Aula aula) {
-		this.aula = aula;
 	}
 
 	

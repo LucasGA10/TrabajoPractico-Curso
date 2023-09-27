@@ -15,14 +15,14 @@ public class PruebaCurso {
 		Date fechaFinInscripcion = new Date(29/04/2023);
 		Date fechaInicio = new Date (10/05/2023);
 		Date fechaFinalizacion = new Date (10/11/2023);
-		
+		Aula aula = new Aula(123, 90);
 		Integer id = 0;
 		Dia dia = Dia.Miercoles;
 		Turno turno = Turno.mañana;
 		
 		Materia materia = new Materia (1, nombreMateria);
-		CicloLectivo cicloLectivo = new CicloLectivo(fechaInscripcion, fechaFinInscripcion, fechaInicio, fechaFinalizacion, Cuatrimestre.primer_cuatrimestre);
-		Comision comision = new Comision(0, materia, cicloLectivo);
+		CicloLectivo cicloLectivo = new CicloLectivo(id, fechaInscripcion, fechaFinInscripcion, fechaInicio, fechaFinalizacion, Cuatrimestre.primer_cuatrimestre);
+		Comision comision = new Comision(materia, cicloLectivo);
 		
 		Curso curso = new Curso(id, comision, dia, turno);
 		

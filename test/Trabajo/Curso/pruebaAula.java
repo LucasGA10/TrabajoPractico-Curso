@@ -11,12 +11,10 @@ public class pruebaAula {
 	public void queSePuedaHacerUnAula() {
 		Integer numeroAula = 120;
 		Integer cantidadAulumnos = 45;
-		Integer cantidadProfesores = 3;
 		
 		Aula aula = new Aula(numeroAula, cantidadAulumnos);
 		
 		assertNotNull(aula);
-		assertEquals(cantidadProfesores, aula.getCantidadProfesores());
 	}
 	
 	/*

@@ -6,25 +6,36 @@ public class Materia {
 
 	private Integer id;
 	private String nombre;
-	private ArrayList <Materia> correlativas;
+	private ArrayList <Materia> idCorrelativas;
 	
 	public Materia(Integer id, String nombre) {
 		this.id = id;
 		this.nombre = nombre;
-		this.correlativas = new ArrayList<>();
+		this.idCorrelativas = new ArrayList<>();
 	}
 	
-	public ArrayList <Materia> getCorrelativas() {
-		return correlativas;
+	
+	public boolean poseeCorrelativa() {
+		if (idCorrelativas != null) {
+			return true;
+		}
+		return false;
+	}
+	
+	public Integer idCorrelativas(Integer posicion) {
+		return idCorrelativas.get(posicion).getId();
 	}
 
-
-	public void nuevaCorrelativa(Materia correlativa) {
-		correlativas.add(correlativa);
+	public void nuevaCorrelativa(Materia idCorrelativa) {
+		idCorrelativas.add(idCorrelativa);
 	}
 	
 	public void quitarCorrelativa(Materia correlativa) {
-		correlativas.remove(correlativa);
+		idCorrelativas.remove(correlativa);
+	}
+	
+	public Integer cantidadCorrelativas() {
+		return idCorrelativas.size();
 	}
 	
 	public Integer getId() {
