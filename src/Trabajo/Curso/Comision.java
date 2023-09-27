@@ -10,6 +10,8 @@ public class Comision {
 	private Integer cantidadAlumnos;
 	private Integer cantidadprofesores;
 	private Integer cantidadMaxProfesores;
+	private Dia dia;
+	private Turno turno;
 	
 
 	public Comision(Materia materia, CicloLectivo cicloLectivo) {
@@ -75,6 +77,22 @@ public class Comision {
 
 	public void setCantidadprofesores(Integer cantidadprofesores) {
 		this.cantidadprofesores = cantidadprofesores;
+	}
+
+	public Dia getDia() {
+		return dia;
+	}
+
+	public void setDia(Dia dia) {
+		this.dia = dia;
+	}
+
+	public Turno getTurno() {
+		return turno;
+	}
+
+	public void setTurno(Turno turno) {
+		this.turno = turno;
 	}
 
 }

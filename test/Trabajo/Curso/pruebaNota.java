@@ -14,24 +14,25 @@ public class pruebaNota {
 		Integer dni = 987654321;
 		Integer codComision = 1000;
 		String nuevaMateria = "Filosofia";
+		String nuevaMateria2 = "Filosofia2";
 		Date fechaInscripcion = new Date (10/04/2023);
 		Date fechaFinInscripcion = new Date(29/04/2023);
 		Date fechaInicio = new Date (10/05/2023);
 		Date fechaFinalizacion = new Date (10/11/2023);
-		
 		Universidad unlam = new Universidad("Unlam");
 		Materia materia = new Materia (1, nuevaMateria);
+		Materia materia2 = new Materia(2, nuevaMateria2);
 		CicloLectivo cicloLectivo = new CicloLectivo(15, fechaInscripcion, fechaFinInscripcion, fechaInicio, fechaFinalizacion, Cuatrimestre.primer_cuatrimestre);
 		Alumno alumno = new Alumno("Eva", "Fort", fechaNacimiento, dni, fechaInicio);
+		Integer nota = 4;
+		
 		unlam.agregarMateria(materia);
+		unlam.agregarMateria(materia2);
+		unlam.agregarCorrelativa(2, 1);
 		unlam.crearComision(materia, cicloLectivo);
 		unlam.agregarAlumno(alumno);
 		unlam.inscribirAlumnoAComision (dni,codComision);
-		
-		
-		Integer nota = 4;
-		
-		boolean registroExitoso = unlam.registrarNota1erParcial (codComision, alumno.getDni(), nota);
+		boolean registroExitoso = unlam.registrarNotaPrimerParcial (codComision, alumno.getDni(), nota);
 		
 		assertTrue(registroExitoso);
 	}
@@ -59,7 +60,7 @@ public class pruebaNota {
 		unlam.inscribirAlumnoAComision (dni,codComision);
 		
 		
-		boolean registroExitoso = unlam.registrarNota1erParcial (codComision, alumno.getDni(), nota);
+		boolean registroExitoso = unlam.registrarNotaPrimerParcial (codComision, alumno.getDni(), nota);
 		boolean registroExitoso2 = unlam.registrarNota2doParcial (codComision, alumno.getDni(), nota2);
 				
 		assertTrue(registroExitoso);

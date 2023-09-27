@@ -219,12 +219,9 @@ public class Universidad {
 	
 	//nota--------------------------------------------------------------------------------------------
 
-	public boolean registrarNota1erParcial(Integer codComision, Integer dni, Integer nota) {
+	public boolean registrarNotaPrimerParcial(Integer codComision, Integer dni, Integer nota) {
 		if (buscarComisionAlumno(codComision, dni) != null && nota >= 1 && nota <= 10) {
 			if (buscarComision(codComision).getMateria().poseeCorrelativa() == false) {
-				buscarComisionAlumno(codComision, dni).setIdNotaPrimerParcial(asignarNota(nota).getId());
-				return true;
-			}else {
 				for (int i = 0; i < comisiones.size(); i++) {
 					Integer aux = buscarNotaCorrelativa(buscarComision(codComision).getMateria().idCorrelativas(i), dni);
 					if (aux < 4) {
@@ -233,13 +230,14 @@ public class Universidad {
 				}
 			}
 		}
-		return false;
+		buscarComisionAlumno(codComision, dni).setIdNotaPrimerParcial(asignarNota(nota).getId());
+		return true;
 	}
 
 	private Integer buscarNotaCorrelativa(Integer idCorrelativas, Integer dni) {
 		for (int i = 0; i < comisiones.size(); i++) {
 			if (buscarIdMateria(idCorrelativas) != null) {
-				buscarComisionAlumno(buscarIdMateria(idCorrelativas), dni).getIdNotaFinal();
+				return buscarComisionAlumno(buscarIdMateria(idCorrelativas), dni).getIdNotaFinal();
 			}
 			
 		}
