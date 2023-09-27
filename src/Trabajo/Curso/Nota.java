@@ -4,13 +4,13 @@ public class Nota {
 	
 	private static Integer nextId = 0;
 	private Integer id;
-	private Integer Nota;
+	private Integer nota;
 	Condicion condicion;
 	
 	public Nota(Integer nota) {
-		Nota = nota;
+		this.nota = nota;
 		asignarCondicion(nota);
-		setId(nextId);
+		this.id = nextId;
 		nextId++;
 	}
 	
@@ -29,12 +29,12 @@ public class Nota {
 	}
 
 	public Integer getNota() {
-		return Nota;
+		return nota;
 	}
 
 
 	public void setNota(Integer nota) {
-		Nota = nota;
+		this.nota = nota;
 	}
 
 

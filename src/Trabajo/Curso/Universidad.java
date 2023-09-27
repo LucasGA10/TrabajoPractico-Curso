@@ -41,7 +41,7 @@ public class Universidad {
 
 	public boolean agregarMateria(Materia materia) {
 		
-		if (buscarMateria(materia.getId()) == null) {
+		if (buscarIdMateria(materia.getId()) == null) {
 			materias.add(materia);
 			return true;
 		}
@@ -50,10 +50,20 @@ public class Universidad {
 	}
 	
 	public boolean quitarMateria(Integer id) {
-		return materias.remove(materias.get(buscarMateria(id)));
+		return materias.remove(materias.get(buscarIdMateria(id)));
 	}
 	
-	private Integer buscarMateria(Integer id) {
+	private Materia buscarMateria(Integer id) {
+		Materia materiaBuscada = null;
+		for (int i = 0; i < materias.size(); i++) {
+			if (materias.get(i).getId().equals(id)) {
+				materiaBuscada = materias.get(i);
+			}
+		}
+		return materiaBuscada;
+	}
+	
+	private Integer buscarIdMateria(Integer id) {
 		Integer materiaBuscada = null;
 		for (int i = 0; i < materias.size(); i++) {
 			if (materias.get(i).getId().equals(id)) {
@@ -64,8 +74,8 @@ public class Universidad {
 	}
 	
 	public boolean agregarCorrelativa(Integer id, Integer id2) {
-		if (buscarMateria(id)!= null && buscarMateria(id2)!= null) {
-			materias.get(buscarMateria(id)).nuevaCorrelativa(materias.get(buscarMateria(id2)));
+		if (buscarIdMateria(id)!= null && buscarIdMateria(id2)!= null) {
+			materias.get(buscarIdMateria(id)).nuevaCorrelativa(buscarMateria(id2));
 			return true;
 		}
 		return false;
@@ -73,13 +83,13 @@ public class Universidad {
 	
 	public boolean quitarCorrelativa(Integer id, Integer id2) {
 		if (buscarMateria(id)!= null && buscarMateria(id2)!= null) {
-			materias.get(buscarMateria(id)).quitarCorrelativa(materias.get(buscarMateria(id2)));
+			materias.get(buscarIdMateria(id)).quitarCorrelativa(buscarMateria(id2));
 			return true;
 		}
 		return false;
 	}
 	
-	//Profesor-------------------------------------------------------------------------------
+	//Profesor y alumno-------------------------------------------------------------------------------
 
 	public boolean agregarProfesor(Profesor profesor) {
 		if (buscarProfesor(profesor.getDni())== null) {
@@ -148,12 +158,22 @@ public class Universidad {
 		return true;
 	}
 	
-	public boolean asignarDocentesAComision(Integer codComision, Integer dni) {//esto talvez valla en un posible "comisionProfe"
+
+	public void asignarAulaComision(Integer codComision, Aula aula) {
+		if (buscarComision(codComision) != null) {
+			buscarComision(codComision).setAula(aula);
+		}
+		
+	}
+	
+	public boolean asignarDocentesAComision(Integer codComision, Integer dni) {
 		if(buscarComision(codComision) != null) {
-			if (buscarProfesor(dni) != null) {
-				comisionProfesor comision = new comisionProfesor(dni, codComision);
-				comisionProfe.add(comision);
-				return true;
+			if (buscarComision(codComision).getCantidadMaxProfesores() >= buscarComision(codComision).getCantidadprofesores()) {
+				if (buscarProfesor(dni) != null) {
+					comisionProfesor comision = new comisionProfesor(dni, codComision);
+					comisionProfe.add(comision);
+					return true;
+				}
 			}
 		}
 		return false;
@@ -199,16 +219,62 @@ public class Universidad {
 	
 	//nota--------------------------------------------------------------------------------------------
 
-	public boolean registrarNota(Integer codComision, Integer dni, Integer nota) {
-		
-			if(buscarComisionAlumno(codComision, dni)!= null && nota >= 1 && nota <= 10) {
-				if (buscarComision(codComision).getMateria().poseeCorrelativa() == true) {
-					buscarComisionAlumno(codComision, dni).setIdNota(asignarNota(nota).getId());
-					return true;
+	public boolean registrarNota1erParcial(Integer codComision, Integer dni, Integer nota) {
+		if (buscarComisionAlumno(codComision, dni) != null && nota >= 1 && nota <= 10) {
+			if (buscarComision(codComision).getMateria().poseeCorrelativa() == false) {
+				buscarComisionAlumno(codComision, dni).setIdNotaPrimerParcial(asignarNota(nota).getId());
+				return true;
+			}else {
+				for (int i = 0; i < comisiones.size(); i++) {
+					Integer aux = buscarNotaCorrelativa(buscarComision(codComision).getMateria().idCorrelativas(i), dni);
+					if (aux < 4) {
+						return false;
+					}
 				}
 			}
-			return false;
 		}
+		return false;
+	}
+
+	private Integer buscarNotaCorrelativa(Integer idCorrelativas, Integer dni) {
+		for (int i = 0; i < comisiones.size(); i++) {
+			if (buscarIdMateria(idCorrelativas) != null) {
+				buscarComisionAlumno(buscarIdMateria(idCorrelativas), dni).getIdNotaFinal();
+			}
+			
+		}
+		return null;
+	}
+
+	public boolean registrarNota2doParcial(Integer codComision, Integer dni, Integer nota) {
+		if(buscarComisionAlumno(codComision, dni) != null && nota >= 1 && nota <= 10) {
+			if (buscarComisionAlumno(codComision, dni).getIdNotaPrimerParcial() != null) {
+				buscarComisionAlumno(codComision, dni).setIdNotaSegundoParcial(asignarNota(nota).getId());
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean registrarNotaRecuperatorio1erParcial(Integer codComision, Integer dni, Integer nota) {
+		if(buscarComisionAlumno(codComision, dni)!= null && buscarComisionAlumno(codComision, dni).getIdNotaPrimerParcial() <= 3) {
+			if(buscarComisionAlumno(codComision, dni).getIdNotaPrimerParcial() != null) {
+				buscarComisionAlumno(codComision, dni).setIdNotaRecuperatorio1erParcial(asignarNota(nota).getId());
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean registrarNotaRecuperatorio2doParcial(Integer codComision, Integer dni, Integer nota) {
+		if(buscarComisionAlumno(codComision, dni)!= null && buscarComisionAlumno(codComision, dni).getIdNotaPrimerParcial() <= 3) {
+			if(buscarComisionAlumno(codComision, dni).getIdNotaPrimerParcial() != null) {
+				buscarComisionAlumno(codComision, dni).setIdNotaRecuperatorio2doParcial(asignarNota(nota).getId());
+				return true;
+			}
+		}
+		return false;
+	}
 
 	private Nota asignarNota(Integer nuevaNota) {
 		for (int i = 0; i < nota.size(); i++) {
@@ -222,5 +288,4 @@ public class Universidad {
 	}
 	
 	
-
 }

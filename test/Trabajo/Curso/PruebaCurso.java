@@ -15,7 +15,7 @@ public class PruebaCurso {
 		Date fechaFinInscripcion = new Date(29/04/2023);
 		Date fechaInicio = new Date (10/05/2023);
 		Date fechaFinalizacion = new Date (10/11/2023);
-		
+		Aula aula = new Aula(123, 90);
 		Integer id = 0;
 		Dia dia = Dia.Miercoles;
 		Turno turno = Turno.mañana;

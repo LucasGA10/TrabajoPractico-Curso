@@ -6,21 +6,17 @@ public class comisionAlumno {
 	private  Integer id;
 	private Integer dniAlumno;
 	private Integer idComision;
-	private Integer idNota;
+	private Integer idNotaPrimerParcial;
+	private Integer idNotaSegundoParcial;
+	private Integer idNotaRecuperatorio;
+	private Integer idNotaFinal;
+	
 	
 	public comisionAlumno(Integer dniAlumno, Integer idComision) {
 		this.dniAlumno = dniAlumno;
 		this.idComision = idComision;
 		this.id = next_id;
 		next_id++;
-	}
-
-	public Integer getIdNota() {
-		return idNota;
-	}
-
-	public void setIdNota(Integer idNota) {
-		this.idNota = idNota;
 	}
 
 	public Integer getDniAlumno() {
@@ -45,6 +41,44 @@ public class comisionAlumno {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getIdNotaPrimerParcial() {
+		return idNotaPrimerParcial;
+	}
+
+	public void setIdNotaPrimerParcial(Integer idNotaPrimerParcial) {
+		this.idNotaPrimerParcial = idNotaPrimerParcial;
+	}
+
+	public Integer getIdNotaSegundoParcial() {
+		return idNotaSegundoParcial;
+	}
+
+	public void setIdNotaSegundoParcial(Integer idNotaSegundoParcial) {
+		this.idNotaSegundoParcial = idNotaSegundoParcial;
+	}
+
+	public Integer getIdNotaRecuperatorio() {
+		return idNotaRecuperatorio;
+	}
+
+	public void setIdNotaRecuperatorio1erParcial(Integer idNotaRecuperatorio) {
+		this.idNotaRecuperatorio = idNotaRecuperatorio;
+		this.idNotaPrimerParcial = idNotaRecuperatorio;
+	}
+	
+	public void setIdNotaRecuperatorio2doParcial(Integer idNotaRecuperatorio) {
+		this.idNotaRecuperatorio = idNotaRecuperatorio;
+		this.idNotaSegundoParcial = idNotaRecuperatorio;
+	}
+
+	public Integer getIdNotaFinal() {
+		return idNotaFinal;
+	}
+
+	public void setIdNotaFinal(Integer idNotaFinal) {
+		this.idNotaFinal = idNotaFinal;
 	}
 
 }

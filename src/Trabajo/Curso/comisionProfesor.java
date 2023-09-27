@@ -14,6 +14,14 @@ public class comisionProfesor {
 		comisionProfesor.next_id++;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public Integer getDniProfesor() {
 		return dniProfesor;
 	}
@@ -28,14 +36,6 @@ public class comisionProfesor {
 
 	public void setIdComision(Integer idComision) {
 		this.idComision = idComision;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 }
