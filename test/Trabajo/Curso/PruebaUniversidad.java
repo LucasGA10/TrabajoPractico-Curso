@@ -109,6 +109,9 @@ public class PruebaUniversidad {
 	public void queSePuedaCrearUnaComision() {
 		String nombreUni = "Unlam";
 		String nuevaMateria = "Filosofia";
+		Integer codComision = 1000;
+		Dia dia = Dia.Lunes;
+		Turno turno = Turno.mañana;
 		Date fechaInscripcion = new Date (10/04/2023);
 		Date fechaFinInscripcion = new Date(29/04/2023);
 		Date fechaInicio = new Date (10/05/2023);
@@ -118,7 +121,7 @@ public class PruebaUniversidad {
 		Materia materia = new Materia (1, nuevaMateria);
 		CicloLectivo cicloLectivo = new CicloLectivo(15, fechaInscripcion, fechaFinInscripcion, fechaInicio, fechaFinalizacion, Cuatrimestre.primer_cuatrimestre);
 		universidad.agregarMateria(materia);
-		boolean registroExitoso = universidad.crearComision(materia, cicloLectivo);
+		boolean registroExitoso = universidad.crearComision(codComision, materia, cicloLectivo, dia, turno);
 		
 		assertTrue(registroExitoso);
 	}

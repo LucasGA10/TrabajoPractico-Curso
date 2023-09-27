@@ -149,8 +149,8 @@ public class Universidad {
 	
 	//Comision----------------------------------------------------------------------------
 
-	public boolean crearComision(Materia materia, CicloLectivo cicloLectivo) {//por terminar
-		Comision comision = new Comision(materia, cicloLectivo);
+	public boolean crearComision(Integer codComision, Materia materia, CicloLectivo cicloLectivo, Dia dia, Turno turno) {//por terminar
+		Comision comision = new Comision(codComision, materia, cicloLectivo, dia, turno);
 		if (comisiones.contains(comision)) {
 			return false;
 		}
@@ -159,14 +159,23 @@ public class Universidad {
 	}
 	
 
-	public void asignarAulaComision(Integer codComision, Aula aula) {
+	public boolean asignarAulaComision(Integer codComision, Aula aula) {
 		if (buscarComision(codComision) != null) {
 			buscarComision(codComision).setAula(aula);
+			return true;
 		}
-		
+		return false;
 	}
 	
-	public boolean asignarDocentesAComision(Integer codComision, Integer dni) {
+	public boolean asignarCantidadAlumnos(Integer codComision, Integer cantidadAlumnos) {
+		if (buscarComision(codComision) != null && buscarComision(codComision).getAula().getCantidadMaxAlumnos() < cantidadAlumnos) {
+			buscarComision(codComision).setCantidadAlumnos(cantidadAlumnos);
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean asignarProfesorAComision(Integer codComision, Integer dni) {
 		if(buscarComision(codComision) != null) {
 			if (buscarComision(codComision).getCantidadMaxProfesores() >= buscarComision(codComision).getCantidadprofesores()) {
 				if (buscarProfesor(dni) != null) {
@@ -179,7 +188,7 @@ public class Universidad {
 		return false;
 	}
 
-	public Comision buscarComision(Integer codComision) {//hice esto public
+	public Comision buscarComision(Integer codComision) {
 		for (int i = 0; i < comisiones.size(); i++) {
 			if (comisiones.get(i).getCodigo().equals(codComision)) {
 				return comisiones.get(i);
@@ -208,7 +217,7 @@ public class Universidad {
 		return false;
 	}
 	
-	private comisionAlumno buscarComisionAlumno(Integer codComision, Integer dni) {
+	public comisionAlumno buscarComisionAlumno(Integer codComision, Integer dni) {
 		for (int i = 0; i < comisionAlum.size(); i++) {
 			if(comisionAlum.get(i).getIdComision().equals(codComision) && comisionAlum.get(i).getDniAlumno().equals(dni)) {
 				return comisionAlum.get(i);
@@ -219,7 +228,7 @@ public class Universidad {
 	
 	//nota--------------------------------------------------------------------------------------------
 
-	public boolean registrarNotaPrimerParcial(Integer codComision, Integer dni, Integer nota) {
+	public boolean registrarNota1erParcial(Integer codComision, Integer dni, Integer nota) {
 		if (buscarComisionAlumno(codComision, dni) != null && nota >= 1 && nota <= 10) {
 			if (buscarComision(codComision).getMateria().poseeCorrelativa() == false) {
 				for (int i = 0; i < comisiones.size(); i++) {
@@ -265,13 +274,32 @@ public class Universidad {
 	}
 	
 	public boolean registrarNotaRecuperatorio2doParcial(Integer codComision, Integer dni, Integer nota) {
-		if(buscarComisionAlumno(codComision, dni)!= null && buscarComisionAlumno(codComision, dni).getIdNotaPrimerParcial() <= 3) {
+		if(buscarComisionAlumno(codComision, dni)!= null && buscarComisionAlumno(codComision, dni).getIdNotaPrimerParcial() < 4) {
 			if(buscarComisionAlumno(codComision, dni).getIdNotaPrimerParcial() != null) {
 				buscarComisionAlumno(codComision, dni).setIdNotaRecuperatorio2doParcial(asignarNota(nota).getId());
 				return true;
 			}
 		}
 		return false;
+	}
+	
+	public boolean registrarNotaFinal(Integer codComision, Integer dni, Integer nota) {
+		if(buscarComisionAlumno(codComision, dni) != null && nota >= 1 && nota <= 10) {
+			if (verNota(buscarComisionAlumno(codComision, dni).getIdNotaPrimerParcial()) > 3 && verNota(buscarComisionAlumno(codComision, dni).getIdNotaSegundoParcial()) > 3) {
+				buscarComisionAlumno(codComision, dni).setIdNotaFinal(asignarNota(nota).getId());
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public Integer verNota(Integer idNota) {
+		for (int i = 0; i < nota.size(); i++) {
+			if (nota.get(i).getId().equals(idNota)) {
+				return nota.get(i).getNota();
+			}
+		}
+		return 0;
 	}
 
 	private Nota asignarNota(Integer nuevaNota) {
